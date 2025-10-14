@@ -10,6 +10,7 @@ export default function Register() {
         email: '',
         password: ''
     })
+    const [auth, setAuth] = useState({})
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -17,9 +18,26 @@ export default function Register() {
         setUser({ ...user, [name]: value })
         console.log('user', user);
     }
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        navigate('/login')
+        try {
+            const res = await fetch('http://localhost:5000/api/register', {
+                method: 'post',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+            const data = await res.json();
+            console.log(data);
+
+            setAuth(data)
+
+            navigate('/login')
+        } catch (err) {
+            console.log("err", err);
+
+        }
 
     }
     return <>
