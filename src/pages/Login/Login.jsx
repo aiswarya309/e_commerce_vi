@@ -2,28 +2,48 @@ import { useState } from 'react'
 import './login.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
+import { useEffect } from 'react'
 export default function Login() {
     const navigate = useNavigate()
     const [Login, setLogin] = useState({
         username: '',
         password: ''
     })
-    const notify = ()=>toast('Invalid credentials')
+    const [auth, setAuth] = useState({})
+    useEffect(()=>{
+        console.log("auth changed",auth);
+    },[auth])
+    const notify = () => toast('Invalid credentials')
     const handleInput = (e) => {
         const { name, value } = e.target
         setLogin({ ...Login, [name]: value })
-        console.log('Login', Login);
 
     }
 
     const handleLogin = (e) => {
         e.preventDefault();
-        if (Login.username === 'admin' && Login.password === 'admin') {
-            localStorage.setItem('token', 'abcd1234')
+        const user = fetch('http://localhost:5000/api/login', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(Login)
+        }).then((res) => res.json())
+            .then((data) => setAuth(data))
+            .catch((err) => console.log(err));
+
+        console.log("response",auth);
+        if(auth.status == 200){
             navigate('/')
-            return;
-        }
-        notify()
+            return
+        }else
+            notify()
+
+        // if (Login.username === 'admin' && Login.password === 'admin') {
+        //     localStorage.setItem('token', 'abcd1234')
+        //     navigate('/')
+        //     return;
+        // }
     }
     return <>
         <div className="login">
@@ -44,7 +64,7 @@ export default function Login() {
                 <input type="button"
                     value="Sign In"
                     onClick={handleLogin} />
-                    <ToastContainer/>
+                <ToastContainer />
             </div>
             <p>Don't have an account <Link to='/register'>Register</Link></p>
 
@@ -54,3 +74,17 @@ export default function Login() {
 
 // <input type="submit"
 //       value="Sign In" />
+
+//  const user = fetch('http://localhost:5000/api/login', {
+//             method: 'POST',
+//             headers: {
+//                 'content-type': 'application/json'
+//             },
+//             body: JSON.stringify(Login)
+//         }).then((res) => res.json())
+//             .then((data) => setAuth(data))
+//             .catch((err) => console.log(err));
+            
+//         console.log("response", user,auth);
+//         ✅ This also works — but console.log must be inside the .then() callback, not after fetch().
+//         why it like that
