@@ -1,16 +1,29 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import './singleProduct.css'
+import { useDispatch } from 'react-redux'
+import {addToCart} from '../../redux/slice'
+import { Link } from 'react-router-dom'
+import { Navbar } from '../Navbar/Navbar'
+import { Footer } from '../Footer/Footer'
 
 export const SingleProduct = () => {
     const location = useLocation();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { description, title, thumbnail, price } = location.state;
+    const HandleAddToCart = ()=>{
+        dispatch(addToCart(location.state));
+        navigate('/cart')
+
+    }
     return (
         <div>
+            <Navbar/>
             <div className="product">
                 <div className="product_img">
                     <img src={thumbnail} alt="" /><br/>
-                    <button>Add to Cart</button>
+                    <button onClick={HandleAddToCart}>Add to Cart</button>
                     <button>Buy now</button>
                 </div>
                 <div className="product_description">
@@ -28,6 +41,8 @@ export const SingleProduct = () => {
                 </div>
             </div>
             <div className="other_product"></div>
+
+            <Footer/>
         </div>
     )
 }

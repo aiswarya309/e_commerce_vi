@@ -14,10 +14,8 @@ export const Listing = () => {
         .then((res) => {
             setData(res.data.products)
         });
-        console.log('product',product);
         
     },[])
-    console.log("be response", data.products);
 
     return (
         // <div className='listing'>
