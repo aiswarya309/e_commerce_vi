@@ -40,3 +40,11 @@
 h1{
     color: rgb(40, 151, 114);
 }
+.hide-show{
+    position: absolute;
+    /* right: 10px; */
+    left: 65%;
+    /* top: 50%; */ 
+    /* transform: transilateY(-50%); */
+    cursor: pointer;
+}
