@@ -31,7 +31,7 @@ export const Listing = () => {
                                     <Card.Text>
                                         {items.description}
                                     </Card.Text>
-                                    <Button variant="primary">More Info</Button>
+                                    {/* <Button variant="primary">More Info</Button> */}
                                 </Card.Body>
                             </Card>
                         </Link>)

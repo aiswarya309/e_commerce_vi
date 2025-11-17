@@ -36,8 +36,11 @@ const createCartSlice = createSlice({
             const item = state.cart.find((item)=>item.id === action.payload.id)
             state.saveForLater.push(item);
            state.cart = state.cart.filter((item)=>item.id !== action.payload.id)
+         },
+         removeSaved:(state,action)=>{
+            state.saveForLater = state.saveForLater.filter(item=>item.id !== action.payload)
          }
     }
 })
-export const { addToCart, increment, decrement, removeItem ,saveforLater} = createCartSlice.actions;
+export const { addToCart, increment, decrement, removeItem ,saveforLater,removeSaved} = createCartSlice.actions;
 export default createCartSlice.reducer;

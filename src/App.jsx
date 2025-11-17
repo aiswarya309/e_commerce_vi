@@ -8,13 +8,13 @@ import Login from './pages/Login/login'
 import { SingleProduct } from './component/SingleProduct/SingleProduct'
 import { Cart } from './component/Cart/Cart'
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <div className="App">
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home/>}/>
+          {/* <Route path="/home" element={<Home />} /> */}
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/product' element={<SingleProduct/>} />
