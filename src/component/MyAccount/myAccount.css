@@ -1,0 +1,14 @@
+.myAccount-container{
+    display: flex;
+    /* width: 100vh; */
+    padding: 10px 100px;
+}
+.myAccount-options{
+    flex: 2;
+    padding: 20px;
+}
+.option-list{
+    flex: 3;
+        padding: 20px;
+
+}

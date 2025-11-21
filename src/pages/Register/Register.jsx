@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import './register.css'
-import { use, useState } from 'react'
+import { useState, useEffect } from 'react'
 export default function Register() {
     // const [userName, setUserName] = useState('')
     // const [email, setEmail] = useState('')
@@ -12,6 +12,11 @@ export default function Register() {
     })
     const [auth, setAuth] = useState({})
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = sessionStorage.getItem('token')
+        if (token) navigate('/')
+    }, [navigate])
 
     const handleChange = (e) => {
         const { name, value } = e.target;

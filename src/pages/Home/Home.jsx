@@ -7,7 +7,9 @@ import { Footer } from '../../component/Footer/Footer'
 import { useState } from 'react'
 
 export const Home = () => {
-  const token = localStorage.getItem('token')
+  // const token = localStorage.getItem('token')
+    const token = sessionStorage.getItem('token')
+
   return (
     token ? <div><Pages /></div> : <Register />)
 }

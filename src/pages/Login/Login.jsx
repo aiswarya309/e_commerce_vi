@@ -1,8 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './login.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
-import { useEffect } from 'react'
 import { AiOutlineEye , AiOutlineEyeInvisible} from "react-icons/ai";
 
 export default function Login() {
@@ -10,16 +9,15 @@ export default function Login() {
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{6,}$/;
 
     const navigate = useNavigate()
+    useEffect(() => {
+        const token = sessionStorage.getItem('token')
+        if (token) navigate('/')
+    }, [navigate])
     const [Login, setLogin] = useState({
         username: '',
         password: ''
     })
-    const [auth, setAuth] = useState({})
     const[show,setShow]=useState(false);
-
-    useEffect(()=>{
-        console.log("auth changed",auth);
-    },[auth])
 
     const notify = () => toast('Invalid credentials')
     const handleInput = (e) => {
@@ -45,22 +43,14 @@ export default function Login() {
             },
             body: JSON.stringify(Login)
         }).then((res) => res.json())
-            .then((data) => setAuth(data))
+            .then((data) => {
+                if(data.status == 200){
+                    sessionStorage.setItem('token','abcd1234')
+                    navigate('/')
+                    return
+                }else notify()
+            })
             .catch((err) => console.log(err));
-
-        console.log("response",auth);
-        if(auth.status == 200){
-            localStorage.setItem('token', 'abcd1234')
-            navigate('/')
-            return
-        }else
-            notify()
-
-        // if (Login.username === 'admin' && Login.password === 'admin') {
-        //     localStorage.setItem('token', 'abcd1234')
-        //     navigate('/')
-        //     return;
-        // }
     }
     return <>
         <div className="login">
