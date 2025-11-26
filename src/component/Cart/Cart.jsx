@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './cart.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navbar } from '../Navbar/Navbar'
@@ -10,6 +10,7 @@ import Modal from '@mui/material/Modal';
 import MyVerticallyCenteredModal from '../bootstrapAddressModel';
 import RemoveCartPopUp from '../RemoveCartBs'
 import cartEmpty from '../../assets/cart-empty.png'
+import { AddressContext } from '../../context/AddressProvider'
 
 
 export const Cart = () => {
@@ -17,19 +18,33 @@ export const Cart = () => {
     const saveLater = useSelector((state) => state.cart.saveForLater)
     const dispatch = useDispatch();
     const [modalShow, setModalShow] = React.useState(false);
-    console.log("cart", cart);
+    const { address } = useContext(AddressContext)
+    console.log("cart", address);
 
     return (<>
-        <Navbar />
         <div className='container-cart'>
             <div className='cart'>
                 <div className="address">
-                    <p>From Saved Address</p>
-                    <button variant="primary" onClick={() => setModalShow(true)}>Enter Delivery Pincode</button>
-                    <MyVerticallyCenteredModal
-                        show={modalShow}
-                        onHide={() => setModalShow(false)}
-                    />
+                    {/* <p>From Saved Address</p> */}
+                    <div className="selected-address">
+                        {address.length !== 0 ?
+                            <>
+                                <span> Deliver to :<b>{address[0].name}   {address[0].pincode}  </b>{address[0].type} </span>
+                                <button variant="primary" onClick={() => setModalShow(true)}>Change</button>
+                                <MyVerticallyCenteredModal
+                                    show={modalShow}
+                                    onHide={() => setModalShow(false)}
+                                />
+                            </>
+
+                            : <span>From Saved Address
+                                <button variant="primary" onClick={() => setModalShow(true)}>Enter delivery Address</button>
+                                <MyVerticallyCenteredModal
+                                    show={modalShow}
+                                    onHide={() => setModalShow(false)}
+                                /></span>}
+                    </div>
+
                 </div>
                 {
                     cart && cart.length ? cart.map((item, i) => (
@@ -54,7 +69,7 @@ export const Cart = () => {
                             <div className="date">Delivery by Mon Oct 20</div>
                         </div>
                     )) : <div className='empty-cart'>
-                        <img src={cartEmpty} className='empty-cart-img'/>
+                        <img src={cartEmpty} className='empty-cart-img' />
                         <h4>Your cart is empty</h4>
                         <p>Explore our wide section and find something you like</p>
                     </div>
@@ -109,7 +124,6 @@ export const Cart = () => {
                 </div>
             </div>
         </div>
-        <Footer />
     </>
     )
 }

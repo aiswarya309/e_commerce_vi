@@ -8,6 +8,7 @@ import { AddressContext } from '../../context/AddressProvider';
 // } from '@mui/base/Unstable_NumberInput';
 
 
+
 export const AddNewAddress = ({setAdd}) => {
   const [formData , setFormData] =  useState({
 name:'',
@@ -20,11 +21,9 @@ state:'',
 landmark:'',
 alternatePhone:'',
 type:''
-
   })
   const {address,setAddress}= useContext(AddressContext)
   
-  console.log("address",address);
   
   const handleChange = (e)=>{
     setFormData({...formData,[e.target.name]:e.target.value})
@@ -34,7 +33,6 @@ const handleSave =()=>{
   setAddress([...address,formData])
   setAdd(false)
 
-  // console.log('address save',address);
   
 }
 const handleCancel =()=>{
@@ -56,7 +54,7 @@ setAdd(false)
   return (
     <div className='add-address-container'>
       <h4>ADD A NEW ADDRESS</h4>
-      <button className="uselocation"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="da7+UC"><g fill="none" fill-rule="evenodd"><path d="M0 0h16v16H0z"></path><path class="" fill="#fff" d="M8 5.3a2.7 2.7 0 1 0 0 5.4 2.7 2.7 0 1 0 0-5.4zm6 2A6 6 0 0 0 8.7 2V.7H7.3V2A6 6 0 0 0 2 7.3H.7v1.4H2A6 6 0 0 0 7.3 14v1.3h1.4V14A6 6 0 0 0 14 8.7h1.3V7.3H14zm-6 5.4A4.7 4.7 0 0 1 3.3 8 4.7 4.7 0 0 1 8 3.3 4.7 4.7 0 0 1 12.7 8 4.7 4.7 0 0 1 8 12.7z"></path></g></svg>Use my current location</button><br />
+      <button className="uselocation"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" className="da7+UC"><g fill="none" fillRule="evenodd"><path d="M0 0h16v16H0z"></path><path className="" fill="#fff" d="M8 5.3a2.7 2.7 0 1 0 0 5.4 2.7 2.7 0 1 0 0-5.4zm6 2A6 6 0 0 0 8.7 2V.7H7.3V2A6 6 0 0 0 2 7.3H.7v1.4H2A6 6 0 0 0 7.3 14v1.3h1.4V14A6 6 0 0 0 14 8.7h1.3V7.3H14zm-6 5.4A4.7 4.7 0 0 1 3.3 8 4.7 4.7 0 0 1 8 3.3 4.7 4.7 0 0 1 12.7 8 4.7 4.7 0 0 1 8 12.7z"></path></g></svg>Use my current location</button><br />
       {/* <TextField id="outlined-basic" label="Outlined" variant="outlined" />
             <TextField id="outlined-basic" label="Outlined" variant="outlined" />
              <NumberInput

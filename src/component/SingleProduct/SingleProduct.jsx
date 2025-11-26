@@ -19,7 +19,6 @@ export const SingleProduct = () => {
     }
     return (
         <div>
-            <Navbar/>
             <div className="product">
                 <div className="product_img">
                     <img src={thumbnail} alt="" /><br/>
@@ -42,7 +41,6 @@ export const SingleProduct = () => {
             </div>
             <div className="other_product"></div>
 
-            <Footer/>
         </div>
     )
 }

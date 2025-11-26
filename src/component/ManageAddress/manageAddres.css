@@ -27,3 +27,7 @@
     color: white;
     border: none;
 }
+.address-container{
+        width: 80%;
+        margin: auto;
+}
