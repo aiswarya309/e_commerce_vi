@@ -11,6 +11,7 @@ import { AddressContext } from '../../context/AddressProvider';
 
 export const AddNewAddress = ({setAdd}) => {
   const [formData , setFormData] =  useState({
+    id:'',
 name:'',
 phone:'',
 pincode:'',
@@ -30,7 +31,10 @@ type:''
     // console.log(formData);
   }
 const handleSave =()=>{
-  setAddress([...address,formData])
+  const newAddress = {...formData,id:address.length + 1}
+  setAddress([...address,newAddress])
+  console.log('aadres',address);
+  
   setAdd(false)
 
   

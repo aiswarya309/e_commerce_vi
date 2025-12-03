@@ -18,21 +18,22 @@ export const Cart = () => {
     const saveLater = useSelector((state) => state.cart.saveForLater)
     const dispatch = useDispatch();
     const [modalShow, setModalShow] = React.useState(false);
-    const { address } = useContext(AddressContext)
-    console.log("cart", address);
+    const { address} = useContext(AddressContext)
+    console.log("cart", cart);
 
     return (<>
         <div className='container-cart'>
             <div className='cart'>
                 <div className="address">
                     {/* <p>From Saved Address</p> */}
-                    <div className="selected-address">
+                    {cart.length > 0 && <div className="selected-address">
                         {address.length !== 0 ?
                             <>
                                 <span> Deliver to :<b>{address[0].name}   {address[0].pincode}  </b>{address[0].type} </span>
                                 <button variant="primary" onClick={() => setModalShow(true)}>Change</button>
                                 <MyVerticallyCenteredModal
                                     show={modalShow}
+                                    setModalShow={setModalShow}
                                     onHide={() => setModalShow(false)}
                                 />
                             </>
@@ -44,7 +45,8 @@ export const Cart = () => {
                                     onHide={() => setModalShow(false)}
                                 /></span>}
                     </div>
-
+}
+                    
                 </div>
                 {
                     cart && cart.length ? cart.map((item, i) => (
