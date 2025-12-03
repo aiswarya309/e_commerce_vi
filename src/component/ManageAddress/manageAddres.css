@@ -1,0 +1,33 @@
+.add-Address{
+    border: 1px solid gray;
+    width: 500px;
+    /* text-align: center; */
+    padding: 10px 20px;
+    margin: 30px 0;
+    cursor: pointer;
+}
+.list-Address{
+    border: 1px solid gray;
+    width: 500px;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+.home-tag{
+    background-color: rgb(191, 184, 184);
+    width: 50px;
+    text-align: center;
+    font-size: 12px;
+}
+.name-php{
+    margin: 10px 0;
+}
+.uselocation{
+    background-color: #2874f0;
+    color: white;
+    border: none;
+}
+.address-container{
+        width: 80%;
+        margin: auto;
+}
