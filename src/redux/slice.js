@@ -11,7 +11,8 @@ const createCartSlice = createSlice({
         addToCart: (state, action) => {
             const exists = state.cart.find((item)=>item.id === action.payload.id)
             if(!exists){
-                state.cart.push({...action.payload,quantity:1})
+                const qty = action.payload.quantity ?? 1
+                state.cart.push({...action.payload,quantity: qty})
             }
         },
         increment: (state,action) => { 
@@ -42,5 +43,5 @@ const createCartSlice = createSlice({
          }
     }
 })
-export const { addToCart, increment, decrement, removeItem ,saveforLater,removeSaved} = createCartSlice.actions;
+export const { addToCart, increment, decrement, removeItem ,saveforLater,removeSaved,SaveCartDecrement,saveCartIncrement} = createCartSlice.actions;
 export default createCartSlice.reducer;
