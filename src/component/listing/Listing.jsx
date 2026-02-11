@@ -11,26 +11,28 @@ export const Listing = () => {
     const [data, setData] = useState([])
     useEffect(() => {
         const product = axios.get('http://localhost:5000/api/products')
-        .then((res) => {
-            setData(res.data.products)
-        });
-        
-    },[])
+            .then((res) => {
+                console.log(res);
+
+                setData(res.data.products)
+            });
+
+    }, [])
 
     return (
         // <div className='listing'>
         <div className='container mt-5 listing'>
-            <div className='row row-cols-1 row-cols-md-3 g-4'>
+            <div className='row row-cols-1 row-cols-md-4 g-4'>
                 {
                     data && data.map((items, i) => (
                         <Link className='link_list' style={{ textDecoration: 'none' }} to='/product' state={items} key={i}>
                             <Card style={{ width: '18rem' }} key={i}>
                                 <Card.Img variant="top" src={items.thumbnail} />
-                                <Card.Body>
-                                    <Card.Title>{items.title}</Card.Title>
-                                    <Card.Text>
-                                        {items.description}
-                                    </Card.Text>
+                                <Card.Body style={{lineHeight:0.5,fontSize:'15px'}}>
+                                    <Card.Title>{items.title}<span>&nbsp;{items.category}</span></Card.Title>
+                                    <Card.Text>{items.brand}</Card.Text>
+                                    <Card.Text><b>&#8377;{items.price}</b> </Card.Text>
+
                                     {/* <Button variant="primary">More Info</Button> */}
                                 </Card.Body>
                             </Card>

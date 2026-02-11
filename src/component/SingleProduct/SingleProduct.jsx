@@ -22,8 +22,8 @@ export const SingleProduct = () => {
             <div className="product">
                 <div className="product_img">
                     <img src={thumbnail} alt="" /><br/>
-                    <button onClick={HandleAddToCart}>Add to Cart</button>
-                    <button>Buy now</button>
+                    <button className='btn' onClick={HandleAddToCart}>Add to Cart</button>
+                    <button className='btn'>Buy now</button>
                 </div>
                 <div className="product_description">
                     <h4>{title}</h4>

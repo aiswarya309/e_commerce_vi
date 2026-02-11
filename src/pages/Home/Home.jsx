@@ -16,13 +16,13 @@ export const Home = () => {
 
 }
 
-const Pages = () => {
-  const [check,setChack] = useState(false)
-  return <>
-    <div className="container">
-      <Navbar />
-      <Listing />
-      <Footer/>
-    </div>
-  </>
-}
+// const Pages = () => {
+//   const [check,setChack] = useState(false)
+//   return <>
+//     <div className="container">
+//       <Navbar />
+//       <Listing />
+//       <Footer/>
+//     </div>
+//   </>
+// }

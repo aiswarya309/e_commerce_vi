@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { AddressContext } from '../context/AddressProvider'
@@ -7,6 +7,7 @@ import { AddressContext } from '../context/AddressProvider'
 function MyVerticallyCenteredModal(props) {
   const { address, setAddress, selectedAddress, setSelectedAddress } = useContext(AddressContext)
 const {setModalShow} = props
+const [pincode,setPincode] = useState('')
   useEffect(() => {
     if (!selectedAddress) return;
     const newOrder = [selectedAddress, ...address.filter((val) => val.id !== selectedAddress.id)]
@@ -15,6 +16,14 @@ const {setModalShow} = props
 const handleRadio =(val)=>{
   setSelectedAddress(val)
   setModalShow(false)
+}
+const handlePincode =async ()=>{
+if(pincode.length !==6) return alert("Please enter valid pincode")
+  const res = await fetch(`https://api.postalpincode.in/pincode/${pincode}`)
+const data = await res.json();
+console.log("pincode",data[0].PostOffice[0]);
+
+  
 }
 
   return (
@@ -43,8 +52,8 @@ const handleRadio =(val)=>{
           </React.Fragment>
         )) : ''}
         <h5>Use pincode to check delivery info</h5>
-        <input type="number" name="" id="" />
-        <button>Submit</button>
+        <input type="number" name="" id="" value={pincode} onChange={(e)=>setPincode(e.target.value)}/>
+        <button onClick={handlePincode}>Submit</button>
       </Modal.Body>
       <Modal.Footer>
         <p>Use my current location</p>
