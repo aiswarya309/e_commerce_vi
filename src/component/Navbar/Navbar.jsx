@@ -33,18 +33,24 @@ export const Navbar = () => {
     navigate(`/${nav}`);
 
   }
-  return (
+const handleLogout = ()=>{
+  sessionStorage.removeItem('token');
+  handleClose();
+  navigate('/login')
+}
 
-      <div className='navbar'>
+  return (
+    <div className='navbar-container'>
+      <div className="navbar" style={{padding:'0 180px'}}>
         <div className="icon">
           <Link to='/' className='d-flex align-items-center text-decoration-none text-black'> <img src={logo} alt="" />Ecommerce</Link>
         </div>
         <div className="search">
-          <CiSearch /> <input type="text" placeholder='Search for Products, Brands and More' />
+          <CiSearch style={{width:'35px'}}/> <input type="text" placeholder='Search for Products, Brands and More' />
         </div>
         <div className="d-flex align-items-center gap-3">
-          <div><Link to='/'>Home</Link></div>
-          <div className='cart-block'><Link to='/cart'>{cart.length > 0 ? <div className='cart-count'>{cart.length}</div> : ""}<BsCart3 />Cart </Link></div>
+          <div><Link to='/' className='text-decoration-none text-black'>Home</Link></div>
+          <div className='cart-block'><Link to='/cart' className='text-decoration-none text-black'>{cart.length > 0 ? <div className='cart-count'>{cart.length}</div> : ""}<BsCart3 />Cart </Link></div>
           {/* <li>About</li>
                 <li>Contact</li> */}
           {/* <li><img src={user} alt="" className='user' />Account</li> */}
@@ -57,6 +63,7 @@ export const Navbar = () => {
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
               onClick={handleClick}
+              className='text-black'
             >
               <img src={user} alt="" className='user' />
               Dashboard
@@ -76,11 +83,13 @@ export const Navbar = () => {
               <MenuItem onClick={() => handleMyProfile('address')}>Manage Address</MenuItem>
               <MenuItem onClick={handleClose}>Orders</MenuItem>
               <MenuItem onClick={handleClose}>Wishlist</MenuItem>
-              <MenuItem onClick={handleClose}>LogOut</MenuItem>
+              <MenuItem onClick={handleLogout}>LogOut</MenuItem>
 
             </Menu>
           </div>
         </div>
+
       </div>
+    </div>
   )
 }

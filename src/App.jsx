@@ -10,7 +10,6 @@ import { Cart } from './component/Cart/Cart'
 import { MyAccount } from './component/MyAccount/MyAccount'
 import { ProtectedRoutes } from './component/ProtectedRoutes'
 import { AddressProvider } from './context/AddressProvider'
-import { AddNewAddress } from './component/ManageAddress/AddNewAddress'
 import { ManageAddress } from './component/ManageAddress/ManageAddress'
 import { Layout } from './component/Layout/Layout'
 

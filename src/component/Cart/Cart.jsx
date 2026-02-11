@@ -3,7 +3,7 @@ import './cart.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navbar } from '../Navbar/Navbar'
 import { Footer } from '../Footer/Footer'
-import { decrement, increment, removeItem, saveforLater, removeSaved,addToCart,SaveCartDecrement,saveCartIncrement } from '../../redux/slice'
+import { decrement, increment, removeItem, saveforLater, removeSaved, addToCart, SaveCartDecrement, saveCartIncrement } from '../../redux/slice'
 // import { Modal } from '@mui/base/Modal';
 // import { Modal } from '@mui/material';
 import Modal from '@mui/material/Modal';
@@ -25,25 +25,25 @@ export const Cart = () => {
     const platformFee = 20
     const totalAmount = totalPrice - totalDiscount + platformFee
     const saveMoney = totalAmount - totalPrice
-    console.log("cart", cart,totalPrice);
+    console.log("cart", cart, totalPrice);
     const getDeliveryDate = () => {
         const today = new Date();
-        console.log("*",today.getDay());
-        today.setDate(today.getDay() + 7)
+        console.log("*", today.getDay());
+        today.setDate(today.getDate() + 7)
         return today.toDateString();
 
     }
 
-    const handleSaveLaterToCart =(item)=>{
+    const handleSaveLaterToCart = (item) => {
         dispatch(addToCart(item));
         dispatch(removeSaved(item.id));
     }
     return (<>
         <div className='container-cart'>
             <div className='cart'>
-                <div className="address">
+                <div >
                     {/* <p>From Saved Address</p> */}
-                    {cart.length > 0 && <div className="selected-address">
+                    {cart.length > 0 && <div className=" address selected-address">
                         {address.length !== 0 ?
                             <>
                                 <span> Deliver to :<b>{address[0].name}   {address[0].pincode}  </b>{address[0].type} </span>
@@ -81,7 +81,7 @@ export const Cart = () => {
                                 <p className="brand">{item.brand}</p>
                                 <p className="catagory">{item.category}</p>
                                 <p className="price">{item.price}</p>
-                                <button className='' onClick={() => dispatch(saveforLater(item))}>Save for later</button>
+                                <button className='btn' onClick={() => dispatch(saveforLater(item))}>Save for later</button>
                                 {/* <button className='' onClick={() => dispatch(removeItem(item.id))}>Remove</button> */}
                                 <RemoveCartPopUp id={item.id} />
                             </div>
@@ -99,7 +99,7 @@ export const Cart = () => {
 
                 <div className="saveLater">
                     {
-                        saveLater && saveLater.length>0 ? (
+                        saveLater && saveLater.length > 0 ? (
                             <>
                                 <hr />
                                 <h3>Saved for later</h3>
@@ -120,7 +120,7 @@ export const Cart = () => {
                                             <p className="catagory">{item.category}</p>
                                             <p className="price">{item.price}</p>
                                             <button className='' onClick={() => dispatch(removeSaved(item.id))}>Remove</button>
-                                            <button className='' onClick={() => handleSaveLaterToCart(item)}>Add to cart</button>
+                                            <button className='btn' onClick={() => handleSaveLaterToCart(item)}>Add to cart</button>
                                         </div>
                                     </div>
                                 ))}
@@ -129,7 +129,7 @@ export const Cart = () => {
                 </div>
 
             </div>
-            {cart.length >0 &&   <div className="price-details">
+            {cart.length > 0 && <div className="price-details">
                 <div className="title">
                     <h3>PRICE DETAILS</h3>
                 </div>
@@ -139,10 +139,12 @@ export const Cart = () => {
                     <p>Platform fee {platformFee}</p><hr />
                     <p><b>Total Amount {totalAmount.toFixed(2)}</b></p><hr />
                     <p>You will save $ {saveMoney.toFixed(2)} on this order</p>
+                    {/* <p>You will save $ {Math.round(saveMoney *100)/100} on this order</p> */}
+
 
                 </div>
             </div>}
-          
+
         </div>
     </>
     )
