@@ -1,14 +1,15 @@
-.navbar-container{
+.navbar-container {
     border-bottom: 1px solid rgb(214, 214, 214);
     border-top: 1px solid rgb(214, 214, 214);
 
 }
-.navbar {
-    height: 100px;
-    width: 100%;
+
+.navbar{
+    height: 100%;
+    width: 100%; 
     display: flex;
     justify-content: space-between;
-    /* padding: 0 140px; */
+    padding: 0 180px;
     object-fit: cover;
 }
 
@@ -36,7 +37,7 @@
     gap: 10px;
 }
 
-.options ul li a{
+.options ul li a {
     padding: 10px;
     color: black;
     font-size: 18px;
@@ -49,32 +50,47 @@
     width: 27x;
     height: 27px;
 }
-.cart-block{
+
+.cart-block {
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
 }
-.cart-count{
+
+.cart-count {
     background-color: rgb(235, 62, 62);
     width: 18px;
     height: 18px;
     font-size: 12px;
     text-align: center;
     border-radius: 50%;
-position: absolute;
-top: 1px;
-/* left: 0.5px; */
+    position: absolute;
+    top: 1px;
+    /* left: 0.5px; */
 }
-.search{
+
+.search {
     width: 350px;
     background-color: #cfe1ff;
     padding: 10px 5px;
     border-radius: 5px;
 }
-.search input{
-        background-color: #cfe1ff;
+
+.search input {
+    background-color: #cfe1ff;
     width: 300px;
     border: none;
     outline: none;
+}
+
+@media(max-width:480px) {
+    .navbar-container{
+        font-size: 12px;
+    }
+
+    .icon {
+        width: 25px;
+        height: 25px;
+    }
 }

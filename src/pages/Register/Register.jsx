@@ -1,6 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom'
 import './register.css'
 import { useState, useEffect } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+
 export default function Register() {
     // const [userName, setUserName] = useState('')
     // const [email, setEmail] = useState('')
@@ -17,11 +19,10 @@ export default function Register() {
         const token = sessionStorage.getItem('token')
         if (token) navigate('/')
     }, [navigate])
-
+    const notify = () => toast("Already have an account");
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUser({ ...user, [name]: value })
-        console.log('user', user);
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -34,12 +35,19 @@ export default function Register() {
                 body: JSON.stringify(user)
             })
             const data = await res.json();
-            console.log(data);
+            console.log(data.status);
+            if (data.status == 500) {
 
-            setAuth(data)
+                notify()
+                navigate('/register')
+            } else {
 
-            navigate('/login')
+                navigate('/login')
+            }
+            // setAuth(data)
+
         } catch (err) {
+            alert('error')
             console.log("err", err);
 
         }
@@ -72,7 +80,8 @@ export default function Register() {
                         value="Sign Up" />
                 </div>
             </form>
-            <p>Already have an accout <Link to='/login'>Login</Link></p>
+            <p>Already have an accout <Link to='/login' style={{ textDecoration: 'none', color: 'rgb(25, 204, 145)' }}>Login</Link></p>
+            <ToastContainer />
         </div>
     </>
 }

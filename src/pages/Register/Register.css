@@ -28,23 +28,30 @@
     margin: 25px;
     padding: 5px;
     border: none;
-    border: 1px solid rgb(119, 236, 197);;
+    border: 1px solid rgb(119, 236, 197);
+    border-radius: 4px;
+
+
 }
 
 .register-item input[type="submit"] {
     padding: 15px;
     border-radius: 10px;
     background-color: rgb(119, 236, 197);
+    color: white;
 
 }
-.register h1{
-    color: rgb(40, 151, 114);
+
+.register h1 {
+    /* color: rgb(40, 151, 114); */
 }
-.register p{
-    color: rgb(40, 151, 114);
+
+.register p {
+    /* color: rgb(40, 151, 114); */
 
 }
-a{
+
+a {
     text-decoration: none;
     color: rgb(8, 74, 58);
 }

@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import { AiOutlineEye , AiOutlineEyeInvisible} from "react-icons/ai";
 
 export default function Login() {
-     const usernameRegex = /^[A-Za-z]{5,}$/; // only letters, min 5
+    //  const usernameRegex = /^[A-Za-z]{5,}$/; // only letters, min 5
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&]).{6,}$/;
 
     const navigate = useNavigate()
@@ -28,10 +28,10 @@ export default function Login() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        if(!usernameRegex.test(Login.username)){
-            toast.error('Username must be at least 5 letters long and contain only letters');
-            return;
-        }
+        // if(!usernameRegex.test(Login.username)){
+        //     toast.error('Username must be at least 5 letters long and contain only letters');
+        //     return;
+        // }
            if(!passwordRegex.test(Login.password)){
             toast.error('password must contain letters, numbers, special characters and be at least 6 characters long');
             return;
@@ -44,8 +44,10 @@ export default function Login() {
             body: JSON.stringify(Login)
         }).then((res) => res.json())
             .then((data) => {
+                console.log("data",data);
+                
                 if(data.status == 200){
-                    sessionStorage.setItem('token','abcd1234')
+                    sessionStorage.setItem('token',data.accessToken)
                     navigate('/')
                     return
                 }else notify()
@@ -56,15 +58,15 @@ export default function Login() {
         <div className="login">
             <h1>Login</h1>
             <form action="" onSubmit={handleLogin}>
-
             <div className="login-item">
                 <input type="text"
-                    nameplaceholder='Username'
+                    placeholder='Username'
                     name='username'
                     value={Login.username || ''}
                     autoComplete="username"
                     onChange={handleInput} 
                     required/>
+                 <div style={{position:'relative'}}>
                 <input type={show ? "text":"password"}
                     name="password"
                     placeholder='Password'
@@ -75,13 +77,14 @@ export default function Login() {
                     <span onClick={()=>setShow(!show)} className='hide-show'>
                         {show?<AiOutlineEye/>:<AiOutlineEyeInvisible/>}
                         </span>
+                    </div>
                 <input type="submit"
                     value="Sign In"
                     // onClick={handleLogin}
                      />
                 <ToastContainer />
             </div>
-            <p>Don't have an account <Link to='/register'>Register</Link></p>
+            <p>Don't have an account <Link to='/register' style={{textDecoration:'none',color:'rgb(25, 204, 145)'}}>Register</Link></p>
             </form>
 
         </div>
