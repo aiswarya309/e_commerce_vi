@@ -9,8 +9,15 @@ import axios from 'axios';
 
 export const Listing = () => {
     const [data, setData] = useState([])
+    const token = sessionStorage.getItem('token')
+    console.log('tkn:',token);
+    
     useEffect(() => {
-        const product = axios.get('http://localhost:5000/api/products')
+        const product = axios.get('http://localhost:5000/api/products',{
+            headers:{
+                Authorization : `Bearer ${token}`
+            }
+        })
             .then((res) => {
                 console.log(res);
 

@@ -41,7 +41,7 @@ const handleLogout = ()=>{
 
   return (
     <div className='navbar-container'>
-      <div className="navbar" style={{padding:'0 180px'}}>
+      <div className="navbar">
         <div className="icon">
           <Link to='/' className='d-flex align-items-center text-decoration-none text-black'> <img src={logo} alt="" />Ecommerce</Link>
         </div>

@@ -28,23 +28,52 @@
     margin: 25px;
     padding: 5px;
     border: none;
+    outline: none;
     border: 1px solid rgb(119, 236, 197);
+    border-radius: 4px;
 }
 
-.login-item input[type="button"] {
-    padding: 15px;
+.login-item input[type="submit"] {
+    padding: 10px 15px;
     border-radius: 10px;
     background-color: rgb(119, 236, 197);
+    color: white;
+
 
 }
-.login h1{
+
+.login h1 {
     color: rgb(40, 151, 114);
 }
-.hide-show{
+
+.hide-show {
     position: absolute;
-    /* right: 10px; */
-    left: 60%;
-    /* top: 50%; */ 
-    /* transform: transilateY(-50%); */
+    /* left: 55%;  */
+    /* top: 49%;   */
+    transform: translate(-360%, 130%);
     cursor: pointer;
 }
+
+/* @media (min-width :576px) {
+    .hide-show {
+    left: 63%;
+    top: 46%;
+}
+}
+@media (min-width :768px){
+        .hide-show {
+        left: 60%;
+        top: 46%;
+    }
+}
+@media (min-width :864px){
+        .hide-show {
+        left: 56%;
+        top: 47%;
+    }
+}
+@media (min-width :1200px){
+        .hide-show {
+        left: 54%;
+    }
+} */
