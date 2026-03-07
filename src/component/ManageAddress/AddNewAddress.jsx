@@ -23,7 +23,7 @@ landmark:'',
 alternatePhone:'',
 type:''
   })
-  const {address,setAddress}= useContext(AddressContext)
+  const {address,setAddress,setSelectedAddress,selectedAddress}= useContext(AddressContext)
   
   
   const handleChange = (e)=>{
@@ -32,8 +32,11 @@ type:''
   }
 const handleSave =()=>{
   const newAddress = {...formData,id:address.length + 1}
+  if(!selectedAddress)
+    setSelectedAddress(newAddress)
   setAddress([...address,newAddress])
-  console.log('aadres',address);
+
+  console.log('aadres:-',address,selectedAddress);
   
   setAdd(false)
 
