@@ -22,6 +22,7 @@ export default function Login() {
     const notify = () => toast('Invalid credentials')
     const handleInput = (e) => {
         const { name, value } = e.target
+    console.log(name, value);
         setLogin({ ...Login, [name]: value })
 
     }

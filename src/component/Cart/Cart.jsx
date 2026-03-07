@@ -11,14 +11,17 @@ import MyVerticallyCenteredModal from '../bootstrapAddressModel';
 import RemoveCartPopUp from '../RemoveCartBs'
 import cartEmpty from '../../assets/cart-empty.png'
 import { AddressContext } from '../../context/AddressProvider'
+import { useState } from 'react'
 
 
 export const Cart = () => {
+    const [modalShow, setModalShow] = React.useState(false);
+    const [pincodeAddress, setPincodeAddress] = useState()
     const cart = useSelector((state) => state.cart.cart)
     const saveLater = useSelector((state) => state.cart.saveForLater)
     const dispatch = useDispatch();
-    const [modalShow, setModalShow] = React.useState(false);
-    const { address } = useContext(AddressContext)
+    const { address, selectedAddress } = useContext(AddressContext)
+
     const totalPrice = cart.reduce((total, item) => total + item.quantity * item.price, 0)
     const totalDiscount = cart.reduce((discount, item) => discount + (item.discountPercentage * item.quantity) / 100, 0)
     const totalItem = cart.reduce((total, item) => total + item.quantity, 0)
@@ -41,25 +44,30 @@ export const Cart = () => {
     return (<>
         <div className='container-cart'>
             <div className='cart'>
-                <div >
-                    {/* <p>From Saved Address</p> */}
+                <div className='address_block'>
+                    {console.log(pincodeAddress)
+                    }
                     {cart.length > 0 && <div className=" address selected-address">
-                        {address.length !== 0 ?
+                        {address.length !== 0 || pincodeAddress ?
                             <>
-                                <span> Deliver to :<b>{address[0].name}   {address[0].pincode}  </b>{address[0].type} </span>
+                                <span> Deliver to : {pincodeAddress ?( <b>{pincodeAddress.Name} - {pincodeAddress.Pincode}</b>):(<> <b>{address[0].name}   {address[0].pincode}  </b> {address[0].type }</>) } &nbsp;&nbsp;</span>
                                 <button variant="primary" onClick={() => setModalShow(true)}>Change</button>
                                 <MyVerticallyCenteredModal
                                     show={modalShow}
                                     setModalShow={setModalShow}
                                     onHide={() => setModalShow(false)}
+                                    pincode={pincodeAddress}
+                                    setPincode = {setPincodeAddress}
                                 />
                             </>
 
-                            : <span>From Saved Address
+                            : <span>From Saved Address &nbsp;&nbsp; : {pincodeAddress ? <b>{pincodeAddress.Name} - {pincodeAddress.Pincode}</b>:''}&nbsp;&nbsp;
                                 <button variant="primary" onClick={() => setModalShow(true)}>Enter delivery Address</button>
                                 <MyVerticallyCenteredModal
                                     show={modalShow}
                                     onHide={() => setModalShow(false)}
+                                    pincode={pincodeAddress}
+                                    setPincode = {setPincodeAddress}
                                 /></span>}
                     </div>
                     }

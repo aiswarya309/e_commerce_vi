@@ -26,9 +26,9 @@ export const SingleProduct = () => {
                     <button className='btn'>Buy now</button>
                 </div>
                 <div className="product_description">
-                    <h4>{title}</h4>
-                    <span><p>4.5</p> 261 Rating & 21 Reviews</span>
-                    <p>${price}</p>
+                    <h4 style={{fontWeight:'700'}}>{title}</h4>
+                    <span style={{color:'rgb(112, 112, 112)'}}>261 Rating & 21 Reviews</span>
+                    <p style={{fontSize: '25px',fontWeight: '700'}}>${price}</p>
                     <div className="offers">
                         <p><b>Bank Offers</b>5% cashback on Axis Bank Flipkart Debit Card up to ₹750T&C</p>
                         <p><b>Bank Offers</b>5% cashback on Flipkart SBI Credit Card upto ₹4,000 per calendar quarterT&C</p>
