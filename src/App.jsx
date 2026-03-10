@@ -12,6 +12,7 @@ import { ProtectedRoutes } from './component/ProtectedRoutes'
 import { AddressProvider } from './context/AddressProvider'
 import { ManageAddress } from './component/ManageAddress/ManageAddress'
 import { Layout } from './component/Layout/Layout'
+import { MyProfile } from './component/MyProfile/MyProfile'
 
 function App() {
   return (
@@ -25,10 +26,11 @@ function App() {
               <Route path='/cart' element={<ProtectedRoutes><Cart /></ProtectedRoutes>} />
               <Route path='/myAccount' element={<ProtectedRoutes><MyAccount /></ProtectedRoutes>} />
               <Route path='/address' element={<ProtectedRoutes><ManageAddress /></ProtectedRoutes>} />
-              </Route>
-              {/* <Route path="/home" element={<Home />} /> */}
-              <Route path='/login' element={<Login />} />
-              <Route path='/register' element={<Register />} />
+              <Route path='/profile' element={<ProtectedRoutes><MyProfile /></ProtectedRoutes>} />
+            </Route>
+            {/* <Route path="/home" element={<Home />} /> */}
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
           </Routes>
         </BrowserRouter>
       </AddressProvider>
