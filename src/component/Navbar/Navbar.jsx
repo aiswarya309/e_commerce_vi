@@ -82,7 +82,7 @@ const handleLogout = ()=>{
               <MenuItem onClick={() => handleMyProfile('profile')}>My Profile</MenuItem>
               <MenuItem onClick={() => handleMyProfile('address')}>Manage Address</MenuItem>
               <MenuItem onClick={handleClose}>Orders</MenuItem>
-              <MenuItem onClick={handleClose}>Wishlist</MenuItem>
+              {/* <MenuItem onClick={handleClose}>Wishlist</MenuItem> */}
               <MenuItem onClick={handleLogout}>LogOut</MenuItem>
 
             </Menu>
